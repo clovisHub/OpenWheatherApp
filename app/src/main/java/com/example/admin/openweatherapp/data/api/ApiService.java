@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @GET("api.openweathermap.org/data/2.5/weather?q={city},us & APPID=")
+    @GET("weather?q={city},us & APPID="+BuildConfig.apikey)
     Call<Feedback> forecastForZipCallable(@Query("city") String zipCode);
 }

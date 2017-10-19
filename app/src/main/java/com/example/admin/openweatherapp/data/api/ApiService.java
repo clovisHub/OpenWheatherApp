@@ -10,6 +10,6 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @GET("weather?q={city},us & APPID="+BuildConfig.apikey)
-    Call<Feedback> getCityCallable(@Query("city") String zipCode);
+    @GET("/data/2.5/weather?APPID="+BuildConfig.apikey)
+    Call<Feedback> getCityCallable(@Query("q") String zipCode);
 }

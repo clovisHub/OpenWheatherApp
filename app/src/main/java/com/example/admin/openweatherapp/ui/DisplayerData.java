@@ -1,5 +1,7 @@
 package com.example.admin.openweatherapp.ui;
 
+import android.util.Log;
+
 import com.example.admin.openweatherapp.data.api.ApiClient;
 import com.example.admin.openweatherapp.data.api.ApiService;
 import com.example.admin.openweatherapp.data.models.Feedback;
@@ -7,18 +9,20 @@ import com.example.admin.openweatherapp.data.models.Feedback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.http.Query;
 
 public class DisplayerData implements DisplayerContract.DataRetriever{
+
+    private static final String TAG = "DisplayerDataTAG_";
 
     private static String name;
     private Feedback reply;
 
     public static DisplayerData obj = null;
 
-    private DisplayerData(){}
-    ApiService client;
+    private DisplayerData(){
+        client = ApiClient.getClientApi();
+    }
+    private ApiService client;
 
     public static DisplayerData getDisplayer(){
 
@@ -31,9 +35,9 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
 
 
     @Override
-    public void loadData(String cityname) {
+    public void loadData(String cityname, final DisplayerPresenterImpl.OnDataLoaded onDataLoaded) {
 
-        if(!(cityname.equals("")||cityname != null)){
+
 
             name = cityname;
 
@@ -42,8 +46,9 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
                 public void onResponse(Call<Feedback> call, Response<Feedback> response) {
 
                     if(response.isSuccessful()){
-
+                        Log.d(TAG, "onResponse: " + response.body());
                         reply = response.body();
+                        onDataLoaded.finishLoading(reply.toString());
                     }
                     else{
                         int statusCode  = response.code();
@@ -56,7 +61,7 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
 
                 }
             });
-        }
+
     }
 
     @Override

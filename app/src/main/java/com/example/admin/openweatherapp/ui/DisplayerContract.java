@@ -11,11 +11,17 @@ public class DisplayerContract {
     interface Presenter{
         void setCityName(String cityName);
         Feedback getdata();
+
+        void setView(View view);
+    }
+
+    interface View{
+        void showData(String data);
     }
 
     interface DataRetriever{
 
-        void loadData(String cityname);
+        void loadData(String cityname, DisplayerPresenterImpl.OnDataLoaded onDataLoaded);
         Feedback getData();
     }
 }

@@ -17,11 +17,10 @@ public class ApiClient {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("api.openweathermap.org/data/2.5/")
+                .baseUrl("http://api.openweathermap.org/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .client(client)
                 .build();
@@ -29,8 +28,8 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static ApiService setClientApi(Retrofit retro){
-        return retro.create(ApiService.class);
+    public static ApiService getClientApi(){
+        return getClient().create(ApiService.class);
     }
 
 }

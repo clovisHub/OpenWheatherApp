@@ -6,11 +6,10 @@ import com.example.admin.openweatherapp.data.models.Feedback;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
 
     @GET("weather?q={city},us & APPID="+BuildConfig.apikey)
-    Call<Feedback> forecastForZipCallable(@Query("city") String zipCode);
+    Call<Feedback> getCityCallable(@Query("city") String zipCode);
 }

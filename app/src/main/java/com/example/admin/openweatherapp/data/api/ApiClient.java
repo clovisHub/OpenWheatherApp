@@ -13,14 +13,14 @@ public class ApiClient {
 
     private static Retrofit retrofit = null;
 
-    static Retrofit getClient() {
+     static Retrofit getClient() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/")
+                .baseUrl("http://api.openweathermap.org")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .client(client)
                 .build();

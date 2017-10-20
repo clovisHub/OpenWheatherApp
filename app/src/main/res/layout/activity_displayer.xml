@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.openweatherapp.ui.DisplayerActivity">
 
-    <TextView
-        android:id="@+id/tv_feedback"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_feedback"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp"
+            android:layout_marginTop="54dp" />
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/displ_imgId"
+            android:layout_below="@+id/tv_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp"
+            android:contentDescription="@string/image_icon" />
+        <TextView
+            android:id="@+id/displ_txt_descId"
+            android:layout_below="@+id/displ_imgId"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/displ_txt_tempId"
+            android:layout_below="@+id/displ_txt_descId"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/displ_txt_windId"
+            android:layout_below="@+id/displ_txt_tempId"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/displ_txt_cityId"
+            android:layout_below="@+id/displ_txt_windId"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/displ_txt_KntryId"
+            android:layout_below="@+id/displ_txt_cityId"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/displ_txt_speedId"
+            android:layout_below="@+id/displ_txt_KntryId"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+</RelativeLayout>

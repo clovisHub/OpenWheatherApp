@@ -25,7 +25,7 @@ public class DisplayerPresenterImpl implements DisplayerContract.Presenter{
     public void setCityName(String cityName) {
         data.loadData(cityName, new OnDataLoaded(){
             @Override
-            public void finishLoading(String str) {
+            public void finishLoading(String [] str) {
                 Log.d(TAG, "finishLoading: " + str);
                 view.showData(str);
             }
@@ -43,6 +43,6 @@ public class DisplayerPresenterImpl implements DisplayerContract.Presenter{
     }
 
     interface OnDataLoaded{
-        void finishLoading(String str);
+        void finishLoading(String [] str);
     }
 }

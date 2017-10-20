@@ -14,15 +14,16 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
 
     private static final String TAG = "DisplayerDataTAG_";
 
-    private static String name;
     private Feedback reply;
 
     public static DisplayerData obj = null;
 
+    private ApiService client;
+
     private DisplayerData(){
         client = ApiClient.getClientApi();
     }
-    private ApiService client;
+
 
     public static DisplayerData getDisplayer(){
 
@@ -37,10 +38,6 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
     @Override
     public void loadData(String cityname, final DisplayerPresenterImpl.OnDataLoaded onDataLoaded) {
 
-
-
-            name = cityname;
-
             client.getCityCallable(cityname).enqueue(new Callback<Feedback>() {
                 @Override
                 public void onResponse(Call<Feedback> call, Response<Feedback> response) {
@@ -48,7 +45,14 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
                     if(response.isSuccessful()){
                         Log.d(TAG, "onResponse: " + response.body());
                         reply = response.body();
-                        onDataLoaded.finishLoading(reply.toString());
+                        String [] data = new String[6];
+                        data[0] = reply.getWeather().get(0).getDescription();
+                        data[1] = reply.getMain().getTemp().toString();
+                        data[2] = reply.getWeather().get(0).getIcon();
+                        data[3] = reply.getName();
+                        data[4] = reply.getWind().getSpeed().toString();
+                        data[5] = reply.getSys().getCountry();
+                        onDataLoaded.finishLoading(data);
                     }
                     else{
                         int statusCode  = response.code();
@@ -66,6 +70,8 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
 
     @Override
     public Feedback getData() {
-        return reply;
+        return null;
     }
+
+
 }

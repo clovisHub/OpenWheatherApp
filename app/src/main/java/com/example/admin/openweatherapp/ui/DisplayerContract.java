@@ -16,7 +16,7 @@ public class DisplayerContract {
     }
 
     interface View{
-        void showData(String data);
+        void showData(String [] data);
     }
 
     interface DataRetriever{

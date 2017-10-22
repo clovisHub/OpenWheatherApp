@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Linker{
     }
 
     @Override
-    public void setCityName(String value) {
+    public void sCityName(String value) {
         cityName = value;
        if(!cityName.equals("")|| cityName!= null){
 

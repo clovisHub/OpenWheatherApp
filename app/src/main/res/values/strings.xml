@@ -3,4 +3,5 @@
     <string name="city_name">City name</string>
     <string name="enter_city">Enter city Name</string>
     <string name="image_icon">image icon</string>
+    <string name="click_for_another">Click for Another</string>
 </resources>

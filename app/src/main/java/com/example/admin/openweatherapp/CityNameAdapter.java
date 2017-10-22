@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CityNameAdapter extends DialogFragment {
 
-    private EditText cityName;
     String cityValue = "";
     Linker activityLinker = null;
+
+    private EditText cityName;
 
 
     @Override
@@ -38,11 +42,12 @@ public class CityNameAdapter extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        //TODO butterknife here if possible
                         cityName = (EditText) cityView.findViewById(R.id.edit_cityNameId);
 
                         cityValue = cityName.getText().toString();
 
-                        activityLinker.setCityName(cityValue);
+                        activityLinker.sCityName(cityValue);
                     }
                 });
 

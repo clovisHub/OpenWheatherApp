@@ -5,9 +5,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-/**
- * Created by Admin on 10/18/2017.
- */
 
 public class ApiClient {
 

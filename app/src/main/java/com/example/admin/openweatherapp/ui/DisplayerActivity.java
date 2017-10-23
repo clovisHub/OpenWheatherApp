@@ -12,6 +12,7 @@ import com.example.admin.openweatherapp.CityNameAdapter;
 import com.example.admin.openweatherapp.Linker;
 import com.example.admin.openweatherapp.R;
 import com.example.admin.openweatherapp.applevel.AppInit;
+import com.example.admin.openweatherapp.applevel.DaggerAppComponent;
 import com.example.admin.openweatherapp.data.api.ApiPicture;
 import com.squareup.picasso.Picasso;
 
@@ -31,8 +32,10 @@ import butterknife.OnClick;
 public class DisplayerActivity extends AppCompatActivity implements DisplayerContract.View, View.OnClickListener,Linker {
 
     private static final String TAG = "DisplayerActivityTAG_";
+
     @Inject
     DisplayerContract.Presenter presenter;
+
     String cityName;
 
     @BindView(R.id.tv_feedback)
@@ -70,10 +73,10 @@ public class DisplayerActivity extends AppCompatActivity implements DisplayerCon
         cityName = getIntent().getStringExtra("cityName").trim();
         Log.d(TAG, "onCreate: " + cityName);
         boolean yes = Pattern.matches("[0-9]",cityName);
+
         if(yes == false){
 
-           // presenter =(new AppInit()).getAppComponent().getPresenter();
-            presenter = new DisplayerPresenterImpl();
+            presenter = DaggerAppComponent.builder().displayerPresenterModule(new DisplayerPresenterModule()).build().getPresenter();
             presenter.setView(this);
             presenter.setCityName(cityName);
         }
@@ -81,8 +84,6 @@ public class DisplayerActivity extends AppCompatActivity implements DisplayerCon
          //   Toast.makeText(this,"Enter five digits", Toast.LENGTH_LONG).show();
         }
     }
-
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -96,7 +97,6 @@ public class DisplayerActivity extends AppCompatActivity implements DisplayerCon
         displayerTv.setText(list.toString());
 
         //displayerTv, temp, wind, city, country,windSpeed, descrip;
-
         ApiPicture picture = new ApiPicture();
          boolean yes = false;
         String testdata ="";

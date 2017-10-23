@@ -8,12 +8,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DisplayerPresenterModule {
+public class DisplayerDataModule {
 
     @Singleton
     @Provides
-    DisplayerContract.Presenter provideDisplayPresenter(){
-        return new DisplayerPresenterImpl();
+    DisplayerContract.DataRetriever provideDisplayerData(){
+        return DisplayerData.getDisplayData();
     }
-
 }

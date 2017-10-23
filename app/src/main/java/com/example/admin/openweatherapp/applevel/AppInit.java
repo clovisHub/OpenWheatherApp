@@ -7,7 +7,7 @@ import com.example.admin.openweatherapp.ui.DisplayerPresenterModule;
 
 public class AppInit extends Application {
 
-    private static AppComponent appComponent;
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -19,11 +19,10 @@ public class AppInit extends Application {
 
         return DaggerAppComponent.builder()
                 .appModule(new AppModule(context))
-                //.displayerPresenterModule(new DisplayerPresenterModule())
                 .build();
     }
 
-    public static AppComponent getAppComponent() {
+    public AppComponent getAppComponent() {
         return appComponent;
     }
 

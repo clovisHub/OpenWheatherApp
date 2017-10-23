@@ -16,7 +16,7 @@ public class DisplayerContract {
         void showData(String [] data);
     }
 
-    interface DataRetriever{
+    public interface DataRetriever{
 
         void loadData(String cityname, DisplayerPresenterImpl.OnDataLoaded onDataLoaded);
         Feedback getData();

@@ -1,5 +1,6 @@
 package com.example.admin.openweatherapp.ui;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.admin.openweatherapp.applevel.AppInit;
@@ -28,20 +29,17 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
     @Inject
     ApiService client;
 
+    public static DisplayerContract.DataRetriever getDisplayData(){
 
-   private DisplayerData(){
-
-       client = DaggerAppComponent.builder().apiClientModule(new ApiClientModule()).build().getApiService();
-      //   client = (new AppInit()).getAppComponent().getApiService();
+        if(obj == null){
+            return new DisplayerData();
+        }
+        return obj;
     }
 
 
-    public static DisplayerData getDisplayer(){
-
-        if(obj == null){
-            obj = new DisplayerData();
-        }
-        return obj;
+   private DisplayerData(){
+       client = DaggerAppComponent.builder().apiClientModule(new ApiClientModule()).build().getApiService();
     }
 
 

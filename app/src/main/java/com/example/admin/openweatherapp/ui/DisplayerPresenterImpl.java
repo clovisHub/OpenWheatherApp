@@ -1,8 +1,13 @@
 package com.example.admin.openweatherapp.ui;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.example.admin.openweatherapp.applevel.AppInit;
+import com.example.admin.openweatherapp.applevel.DaggerAppComponent;
 import com.example.admin.openweatherapp.data.models.Feedback;
+
+import javax.inject.Inject;
 
 /**
  * Created by Admin on 10/18/2017.
@@ -11,14 +16,16 @@ import com.example.admin.openweatherapp.data.models.Feedback;
 public class DisplayerPresenterImpl implements DisplayerContract.Presenter{
 
     private static final String TAG = "DisplayerImplTAG_";
+    @Inject
     DisplayerContract.DataRetriever data;
 
-    public DisplayerPresenterImpl presenter = null;
+    //public DisplayerPresenterImpl presenter = null;
 
     private DisplayerContract.View view;
 
     public DisplayerPresenterImpl(){
-        data = DisplayerData.getDisplayer();
+        //data = DisplayerData.getDisplayer();
+        data = DaggerAppComponent.builder().displayerDataModule(new DisplayerDataModule()).build().getDisplayerData();
     }
 
     @Override

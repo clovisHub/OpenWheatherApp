@@ -1,14 +1,19 @@
 package com.example.admin.openweatherapp.data.api;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-
-public class ApiClient {
+@Module
+public class ApiClientModule {
 
     private static Retrofit retrofit = null;
+
 
      static Retrofit getClient() {
 
@@ -25,6 +30,7 @@ public class ApiClient {
         return retrofit;
     }
 
+    @Provides
     public static ApiService getClientApi(){
         return getClient().create(ApiService.class);
     }

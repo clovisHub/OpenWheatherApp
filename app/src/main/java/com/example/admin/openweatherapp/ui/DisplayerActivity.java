@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.admin.openweatherapp.CityNameAdapter;
 import com.example.admin.openweatherapp.Linker;
 import com.example.admin.openweatherapp.R;
+import com.example.admin.openweatherapp.applevel.AppInit;
 import com.example.admin.openweatherapp.data.api.ApiPicture;
 import com.squareup.picasso.Picasso;
 
@@ -21,12 +22,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DisplayerActivity extends AppCompatActivity implements DisplayerContract.View, View.OnClickListener,Linker {
 
     private static final String TAG = "DisplayerActivityTAG_";
+    @Inject
     DisplayerContract.Presenter presenter;
     String cityName;
 
@@ -58,7 +63,7 @@ public class DisplayerActivity extends AppCompatActivity implements DisplayerCon
 
         ButterKnife.bind(this);
 
-        displayBtn.setOnClickListener(this);
+     //   displayBtn.setOnClickListener(this);
 
 
 
@@ -67,6 +72,7 @@ public class DisplayerActivity extends AppCompatActivity implements DisplayerCon
         boolean yes = Pattern.matches("[0-9]",cityName);
         if(yes == false){
 
+           // presenter =(new AppInit()).getAppComponent().getPresenter();
             presenter = new DisplayerPresenterImpl();
             presenter.setView(this);
             presenter.setCityName(cityName);
@@ -161,7 +167,7 @@ public class DisplayerActivity extends AppCompatActivity implements DisplayerCon
         }
 
     }
-
+    @OnClick(R.id.displ_btn_cityNamId)
     @Override
     public void onClick(View view) {
 

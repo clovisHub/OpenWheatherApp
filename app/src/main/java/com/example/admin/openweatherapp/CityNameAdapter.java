@@ -16,7 +16,7 @@ public class CityNameAdapter extends DialogFragment {
 
     String cityValue = "";
     Linker activityLinker = null;
-
+    //@BindView(R.id.edit_cityNameId) EditText cityName;
     private EditText cityName;
 
 
@@ -27,7 +27,6 @@ public class CityNameAdapter extends DialogFragment {
 
         return cityDialog();
     }
-
 
     private AlertDialog cityDialog(){
 
@@ -43,6 +42,7 @@ public class CityNameAdapter extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         //TODO butterknife here if possible
+                        //ButterKnife.bind(this,cityView)
                         cityName = (EditText) cityView.findViewById(R.id.edit_cityNameId);
 
                         cityValue = cityName.getText().toString();

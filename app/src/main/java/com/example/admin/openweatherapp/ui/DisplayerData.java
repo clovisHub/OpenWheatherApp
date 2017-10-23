@@ -2,13 +2,19 @@ package com.example.admin.openweatherapp.ui;
 
 import android.util.Log;
 
-import com.example.admin.openweatherapp.data.api.ApiClient;
+import com.example.admin.openweatherapp.applevel.AppInit;
+import com.example.admin.openweatherapp.applevel.DaggerAppComponent;
+import com.example.admin.openweatherapp.data.api.ApiClientModule;
 import com.example.admin.openweatherapp.data.api.ApiService;
 import com.example.admin.openweatherapp.data.models.Feedback;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class DisplayerData implements DisplayerContract.DataRetriever{
 
@@ -16,12 +22,17 @@ public class DisplayerData implements DisplayerContract.DataRetriever{
 
     private Feedback reply;
 
+
     public static DisplayerData obj = null;
 
-    private ApiService client;
+    @Inject
+    ApiService client;
 
-    private DisplayerData(){
-        client = ApiClient.getClientApi();
+
+   private DisplayerData(){
+
+       client = DaggerAppComponent.builder().apiClientModule(new ApiClientModule()).build().getApiService();
+      //   client = (new AppInit()).getAppComponent().getApiService();
     }
 
 

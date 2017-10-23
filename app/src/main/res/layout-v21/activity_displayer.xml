@@ -79,6 +79,7 @@
         <Button
             android:id="@+id/displ_btn_cityNamId"
             android:gravity="center"
+            android:elevation="4dp"
             android:text="@string/click_for_another"
             android:layout_width="100dp"
             android:layout_height="100dp"
